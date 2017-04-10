@@ -47,21 +47,35 @@ class Queue{
         System.out.println(elements[front]);
     }
 
+    public void priorityInsert(int value){
+        int i;
+        if(numberOfItems ==0){
+            insert(value);
+        }
+        else{
+            for(i=numberOfItems;i>=0;i--){
+                if(value>elements[i])
+                    elements[i+1]=elements[i];
+                else break;
+            }
+            elements[i+1] = value;
+            numberOfItems++;
+        }
+    }
+
 }
 
 public class Main {
 
     public static void main(String[] args) {
         Queue q=new Queue(10);
-        q.insert(2);
-        q.insert(4);
-        q.insert(5);
-        q.insert(6);
-        q.insert(7);
+        q.priorityInsert(5);
+        q.priorityInsert(2);
+        q.priorityInsert(4);
+        q.priorityInsert(10);
+        q.priorityInsert(1);
+        q.priorityInsert(22);
         q.display();
-        q.remove();
-        q.display();
-        q.remove();
-        q.display();
+
     }
 }
